@@ -32,6 +32,7 @@ class User extends Authenticatable
         'kota',
         'pendidikan_terakhir',
         'tipe_pendaftaran',
+        'status_peserta',
         'role',
         'tanggal_pendaftaran',
         'password',

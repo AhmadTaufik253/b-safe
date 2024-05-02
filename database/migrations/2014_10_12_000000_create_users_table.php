@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('kota');
             $table->string('pendidikan_terakhir');
             $table->string('tipe_pendaftaran');
+            $table->enum('status_peserta', ['calon', 'peserta']);
             $table->enum('role', ['admin', 'peserta']);
             $table->timestamp('tanggal_pendaftaran')->nullable();
             $table->string('password');

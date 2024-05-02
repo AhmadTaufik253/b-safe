@@ -14,5 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('peserta.index');
+});
+Route::get('/berhasil', function () {
+    return view('peserta.berhasil-daftar');
 });
