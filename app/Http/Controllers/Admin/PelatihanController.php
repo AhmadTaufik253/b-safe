@@ -63,11 +63,3 @@ class PelatihanController extends Controller
         //
     }
 }
-
-echo "# b-safe" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M master
-git remote add origin https://github.com/AhmadTaufik253/b-safe.git
-git push -u origin master
