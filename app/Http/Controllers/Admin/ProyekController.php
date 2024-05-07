@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Proyek;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,8 @@ class ProyekController extends Controller
     public function index()
     {
         //
+
+        return view('admin.proyek');
     }
 
     /**

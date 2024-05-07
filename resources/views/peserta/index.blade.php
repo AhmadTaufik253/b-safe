@@ -24,22 +24,23 @@
                 <h6 class="card-subtitle mb-2 text-body-secondary">Think Safe, Act Safe, Be Safe</h6>
               </div>
               <div class="isi ms-4 me-4">
-                <form>
+                <form action="{{ route('register-store') }}" method="POST">
+                    @csrf
                   <div class="mb-3">
                     <label for="nama_peserta" class="form-label">Nama Peserta</label>
-                    <input type="email" class="form-control" id="nama_peserta" required>
+                    <input type="text" name="nama" class="form-control" id="nama_peserta" required>
                   </div>
                   <div class="mb-3">
                     <label for="no_whatsapp" class="form-label">No Whatsapp</label>
-                    <input type="number" class="form-control" id="no_whatsapp" required>
+                    <input type="number" name="no_telepon" class="form-control" id="no_whatsapp" required>
                   </div>
                   <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="email" required>
+                    <input type="email" name="email" class="form-control" id="email" required>
                   </div>
                   <div class="mb-3">
                     <label for="" class="form-label" aria-describedby="pelatihan">Pilih Pelatihan</label>
-                    <select class="form-select" required>
+                    <select class="form-select" >
                       <option hidden>-- Silahkan Pilih Pelatihan -- </option>
                       <option value=""></option>
                     </select>
@@ -47,15 +48,15 @@
                   </div>
                   <div class="mb-3">
                     <label for="" class="form-label">Bundling Pelatihan</label>
-                    <select class="form-select" required>
+                    <select class="form-select">
                       <option hidden>-- Silahkan Pilih Bundling Pelatihan -- </option>
                       <option value=""></option>
                     </select>
                   </div>
                   <div class="row mt-4">
                     <div class="col-12 text-end">
-                      <!-- <button class="btn btn-primary">Daftar Pelatihan</button> -->
-                      <a href="/berhasil" class="btn btn-primary">Daftar Pelatihan</a>
+                      <button type="submit" class="btn btn-primary">Daftar Pelatihan</button>
+                      {{-- <a href="/berhasil" class="btn btn-primary">Daftar Pelatihan</a> --}}
                     </div>
                   </div>
                 </form>

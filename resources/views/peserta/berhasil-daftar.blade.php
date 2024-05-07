@@ -24,7 +24,10 @@
         <div class="col-6 mx-auto">
           <div class="card custom-card">
             <div class="card-body">
-              <div class="isi ms-4 me-4"></div>
+              <div class="isi ms-4 me-4">
+                <h4>{{ $data->nama }}</h4>
+                <h4>{{ $data->no_telepon }}</h4>
+              </div>
             </div>
           </div>
         </div>
@@ -32,7 +35,7 @@
       <div class="row">
         <div class="col-6 mx-auto text-center">
           <h6>Jika perlu bantuan silahkan hubungi admin kami</h6>
-          <button class="btn btn-primary mt-1">Chat admin</button>
+          <a href="https://api.whatsapp.com/send/?phone=62895337088558" target="_blank" class="btn btn-primary mt-1">Chat admin</a>
         </div>
       </div>
     </div>

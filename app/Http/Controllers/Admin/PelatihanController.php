@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Pelatihan;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,9 @@ class PelatihanController extends Controller
     public function index()
     {
         //
+        $data['pelatihan'] = Pelatihan::all();
+
+        return view('admin.pelatihan', $data);
     }
 
     /**
@@ -29,6 +33,14 @@ class PelatihanController extends Controller
     public function store(Request $request)
     {
         //
+        $data = Pelatihan::create($request->all());
+        if ($request->hasFile('cover')) {
+            $request->file('cover')->move('cover_pelatihan/', $request->file('cover')->getClientOriginalName());
+            $data->cover = $request->file('cover')->getClientOriginalName();
+            $data->save();
+        }
+
+        return redirect()->back();;
     }
 
     /**
