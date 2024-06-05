@@ -1,6 +1,6 @@
 @extends('admin.layouts.layout')
+@section('menuPelatihan','active')
 @section('content')
-
 		<div class="main-panel">
 			<div class="content">
 				<div class="page-inner">
@@ -13,7 +13,7 @@
                                 <div class="card-header">
 									<div class="d-flex align-items-center">
 										<h4 class="card-title">Pelatihan</h4>
-										<button class="btn btn-primary ml-auto btn-sm" data-toggle="modal" data-target="#addRowModal"><i class="fas fa-plus"></i> Buat Pelatihan
+										<button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#addRowModal"><i class="fas fa-plus"></i> Buat Pelatihan
 										</button>
 									</div>
                                 </div>
@@ -45,13 +45,13 @@
 													</td>
 													<td>{{ $row->nama_pelatihan }}</td>
 													<td>{{ 'Rp. ' . number_format($row->harga, 0, ',', '.') }}</td>
-													<td></td>
-													<td></td>
+													<td>{{ $row->jumlah_peserta }}</td>
+													<td>{{ $row->jumlah_calon_peserta }}</td>
 													<td>
                                                         <a href="#" data-toggle="modal" data-target="#editRowModal{{ $row->id }}"><i class="fas fa-edit"></i></a>
-                                                        <a href="#"><i class="fas fa-users"></i></a>
-                                                        <a href="#"><i class="fas fa-user-plus"></i></a>
-                                                        <a href="#"><i class="fas fa-folder-open"></i></a>
+                                                        <a href="{{ route('pelatihan-peserta',$row->id ) }}"><i class="fas fa-users"></i></a>
+                                                        <a href="{{ route('pelatihan-calon-peserta',$row->id ) }}"><i class="fas fa-user-plus"></i></a>
+                                                        <a href="{{ route('pelatihan-destroy', $row->id) }}"><i class="fas fa-trash-alt"></i></a>
                                                     </td>
 												</tr>
 												@endforeach
@@ -64,7 +64,6 @@
                     </div>
 				</div>
 			</div>
-			
 		</div>
 
 		<!-- Modal Tambah Pelatihan -->
@@ -119,8 +118,9 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<form method="POST" action="{{ route('pelatihan-store') }}" enctype="multipart/form-data">
+					<form method="POST" action="{{ route('pelatihan-update', $row->id) }}" enctype="multipart/form-data">
 						@csrf
+						@method('PUT')
 						<div class="modal-body">
 							<div class="form-group">
 								<div class="avatar avatar-xl">
@@ -129,7 +129,7 @@
 							</div>
 							<div class="form-group">
 								<label for="">Cover</label>
-								<input type="file" name="cover" class="form-control-file" id="">
+								<input type="file" name="cover"  class="form-control-file" id="">
 							</div>
 							<div class="form-group">
 								<label>Nama Pelatihan</label>

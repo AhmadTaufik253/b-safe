@@ -1,4 +1,5 @@
 @extends('admin.layouts.layout')
+@section('menuDashboard','active')
 @section('content')
 
 		<div class="main-panel">
@@ -13,27 +14,12 @@
 								<div class="card-header">
 									<div class="card-head-row">
 										<div class="card-title">Pertumbuhan Peserta</div>
-										{{-- <div class="card-tools">
-											<a href="#" class="btn btn-info btn-border btn-round btn-sm mr-2">
-												<span class="btn-label">
-													<i class="fa fa-pencil"></i>
-												</span>
-												Export
-											</a>
-											<a href="#" class="btn btn-info btn-border btn-round btn-sm">
-												<span class="btn-label">
-													<i class="fa fa-print"></i>
-												</span>
-												Print
-											</a>
-										</div> --}}
 									</div>
 								</div>
 								<div class="card-body">
-									<div class="chart-container" style="min-height: 375px">
-										<canvas id="statisticsChart"></canvas>
+									<div class="chart-container" style="width: 75%; margin: auto;">
+										<canvas id="participantChart"></canvas>
 									</div>
-									<div id="myChartLegend"></div>
 								</div>
 							</div>
 						</div>
@@ -63,11 +49,13 @@
                                                 @foreach($calon as $row)
 												<tr>
 													<td>{{ $no++ }}</td>
-													<td>{{ $row->pelatihan }}</td>
-													<td>{{ $row->nama }}</td>
-													<td>10 Oktober 2023 10.10</td>
+													<td>{{ $row->pelatihan->nama_pelatihan }}</td>
+													<td>{{ $row->user->nama }}</td>
+													<td>{{ \Carbon\Carbon::parse($row->created_at)->format('d M Y H:i') }}</td>
 													<td>
-                                                        <button class="btn btn-success btn-sm">Detail</button>
+														<form action="{{ route('accept', $row->id) }}" method="GET">
+															<button class="btn btn-success btn-sm">Accept</button>
+														</form>
                                                     </td>
 												</tr>
                                                 @endforeach
@@ -82,5 +70,31 @@
 			</div>
 			
 		</div>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				var ctx = document.getElementById('participantChart').getContext('2d');
+				var participantChart = new Chart(ctx, {
+					type: 'line', // atau 'bar'
+					data: {
+						labels: @json($labels),
+						datasets: [{
+							label: 'Jumlah Peserta',
+							data: @json($count),
+							borderColor: 'rgba(75, 192, 192, 1)',
+							backgroundColor: 'rgba(75, 192, 192, 0.2)',
+							borderWidth: 1
+						}]
+					},
+					options: {
+						scales: {
+							y: {
+								beginAtZero: true
+							}
+						}
+					}
+				});
+			});
+		</script>
 @endsection
 	

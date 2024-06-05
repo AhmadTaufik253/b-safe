@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Pelatihan;
+use App\Models\UserPelatihan;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -13,11 +16,36 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //
-        $data['calon'] = User::where('status_peserta','calon peserta')->get();
+        $data['calon'] = UserPelatihan::where('status_peserta','calon peserta')->get();
 
+        $participants = UserPelatihan::selectRaw('COUNT(*) as count, MONTH(created_at) as month')
+            ->where('status_peserta', 'peserta')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        // Menyiapkan data untuk chart
+        $data['labels'] = $participants->pluck('month')->map(function ($month) {
+            return Carbon::create()->month($month)->format('F');
+        });
+
+        $data['count'] = $participants->pluck('count');
+        // dd($data['count']);
 
         return view('admin.dashboard', $data);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        $peserta = UserPelatihan::find($id);
+        $peserta->status_peserta = "peserta";
+        $peserta->save();
+    
+        return redirect()->back();
+
     }
 
     /**
@@ -48,14 +76,6 @@ class DashboardController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
     {
         //
     }

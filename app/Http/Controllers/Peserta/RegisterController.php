@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Peserta;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Pelatihan;
+use App\Models\UserPelatihan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -14,8 +17,9 @@ class RegisterController extends Controller
     public function index()
     {
         //
+        $data['pelatihan'] = Pelatihan::all();
 
-        return view('peserta.index');
+        return view('peserta.index', $data);
     }
 
     /**
@@ -26,18 +30,60 @@ class RegisterController extends Controller
         //
     }
 
+    // Jika pengguna belum ada, buat pengguna baru dan tambahkan pelatihan ke tabel pivot
+            // $data['user'] = User::create([
+            //     'nama' => $request->nama,
+            //     'no_telepon' => $request->no_telepon,
+            //     'email' => $request->email,
+            //     'status_peserta' => 'calon peserta',
+            //     'role' => 'peserta',
+            //     'password' => Hash::make('peserta123')
+            // ]);
+
+            // // Hubungkan data['user'] baru dengan pelatihan yang dipilih
+            // $data['user']->pelatihans()->attach($request->pelatihan);
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
-        // dd($request);
-        $data['data'] = User::create($request->all());
-// dd($data);
-        return view('peserta.berhasil-daftar', $data);
-    }
+        $user = User::where('email', $request->email)->first();
 
+        if ($user) {
+            $existingPivot = UserPelatihan::where('user_id', $user->id)
+                                          ->where('pelatihan_id', $request->pelatihan)
+                                          ->first();
+
+            if (!$existingPivot) {
+                UserPelatihan::create([
+                    'user_id' => $user->id,
+                    'pelatihan_id' => $request->pelatihan,
+                    'status_peserta' => 'calon peserta',
+                ]);
+            } else {
+                return redirect()->back()->withErrors(['msg' => 'Pelatihan sudah ditambahkan untuk pengguna ini.']);
+            }
+        } else {
+            $user = User::create([
+                'nama' => $request->nama,
+                'no_telepon' => $request->no_telepon,
+                'email' => $request->email,
+                'role' => 'peserta',
+                'password' => Hash::make('peserta123'),
+            ]);
+
+            UserPelatihan::create([
+                'user_id' => $user->id,
+                'pelatihan_id' => $request->pelatihan,
+                'status_peserta' => 'calon peserta',
+            ]);
+        }
+         // Load the pelatihan relationship
+        $user->load('pelatihans');
+
+        return view('peserta.berhasil-daftar', compact('user'));
+    }
     /**
      * Display the specified resource.
      */

@@ -31,8 +31,12 @@ return new class extends Migration
             $table->enum('role', ['admin', 'peserta'])->nullable();
             $table->timestamp('tanggal_pendaftaran')->nullable();
             $table->string('password')->nullable();
-            $table->string('pelatihan')->nullable();
+            // $table->unsignedBigInteger('pelatihan_id')->nullable();
             $table->timestamps();
+
+            
+            // Menambahkan foreign key constraint
+            // $table->foreign('pelatihan_id')->references('id')->on('pelatihans')->onDelete('set null');
         });
     }
 

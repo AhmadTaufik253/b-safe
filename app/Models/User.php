@@ -35,8 +35,25 @@ class User extends Authenticatable
         'status_peserta',
         'role',
         'tanggal_pendaftaran',
+        'pelatihan_id',
         'password',
+        'ktp',
+        'cv',
+        'foto_background_merah',
+        'surat_keterangan_bekerja',
+        'scan_ijazah_terakhir',
+        'foto_tanda_tangan',
     ];
+
+    public function pelatihans()
+    {
+        return $this->belongsToMany(Pelatihan::class, 'user_pelatihan');
+    }
+
+    // public function pelatihan()
+    // {
+    //     return $this->belongsTo(Pelatihan::class);
+    // }
 
     /**
      * The attributes that should be hidden for serialization.

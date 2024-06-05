@@ -11,7 +11,7 @@
     <div class="container">
       <div class="row mb-4 mt-4">
         <div class="col-12 text-center">
-          <img src="asset/img/logo.jpg" height="140" width="" alt="logo" />
+          <img src="asset/img/logo-2.png" height="140" width="" alt="logo" />
         </div>
       </div>
       <div class="row mb-4">
@@ -25,9 +25,14 @@
           <div class="card custom-card">
             <div class="card-body">
               <div class="isi ms-4 me-4">
-                <h4>{{ $data->nama }}</h4>
-                <h4>{{ $data->no_telepon }}</h4>
-              </div>
+                <p class="mb-1" style="font-weight: bold; font-size: 14px;">Peserta</p>
+                <h4 class="mb-3" style="font-weight: bold; font-size: 16px;">{{ $user->nama }}</h4>
+                <p class="mb-1" style="font-weight: bold; font-size: 14px;">No Whatsapp</p>
+                <h4 class="mb-3" style="font-weight: bold; font-size: 16px;">{{ $user->no_telepon }}</h4>
+                <p class="mb-1" style="font-weight: bold; font-size: 14px;">Pelatihan</p>
+                {{-- <h4 class="mb-3" style="font-weight: bold; font-size: 16px;">{{ $user->pelatihan->nama_pelatihan }}</h4> --}}
+                {{-- <h4 class="mb-3" style="font-weight: bold; font-size: 14px;">()</h4> --}}
+            </div>
             </div>
           </div>
         </div>

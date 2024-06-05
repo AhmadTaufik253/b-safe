@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Peserta;
 
 use App\Http\Controllers\Controller;
+use App\Models\UserPelatihan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SertifikatController extends Controller
 {
@@ -13,6 +15,9 @@ class SertifikatController extends Controller
     public function index()
     {
         //
+        $data['sertif'] = UserPelatihan::where('user_id', Auth::user()->id)->where('status_sertifikat','Sertifikat sudah dibuat')->get();
+        
+        return view('peserta.sertifikat', $data);
     }
 
     /**

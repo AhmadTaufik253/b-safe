@@ -4,15 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">  
     <link rel="stylesheet" href="asset/css/style.css">
   </head>
   <body>
-    
     <div class="container">
       <div class="row mt-4">
         <div class="col-12 text-center">
-          <img src="asset/img/logo.jpg" height="140" height="" width="" alt="logo">
+          <img src="asset/img/logo-2.png" height="140" height="" width="" alt="logo">
         </div>
       </div>
       <div class="row mt-4 mb-4">
@@ -40,23 +39,17 @@
                   </div>
                   <div class="mb-3">
                     <label for="" class="form-label" aria-describedby="pelatihan">Pilih Pelatihan</label>
-                    <select class="form-select" >
+                    <select class="form-select" name="pelatihan" required>
                       <option hidden>-- Silahkan Pilih Pelatihan -- </option>
-                      <option value=""></option>
+                      @foreach($pelatihan as $row)
+                        <option value="{{ $row->id }}">{{ $row->nama_pelatihan }}</option>
+                      @endforeach
                     </select>
                     <div id="pelatihan" class="form-text text-danger">*Pastikan dan cek kembali nama pelatihan dan tanggal pelatihan yang anda akan ikuti</div>
-                  </div>
-                  <div class="mb-3">
-                    <label for="" class="form-label">Bundling Pelatihan</label>
-                    <select class="form-select">
-                      <option hidden>-- Silahkan Pilih Bundling Pelatihan -- </option>
-                      <option value=""></option>
-                    </select>
                   </div>
                   <div class="row mt-4">
                     <div class="col-12 text-end">
                       <button type="submit" class="btn btn-primary">Daftar Pelatihan</button>
-                      {{-- <a href="/berhasil" class="btn btn-primary">Daftar Pelatihan</a> --}}
                     </div>
                   </div>
                 </form>

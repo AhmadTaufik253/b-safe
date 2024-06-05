@@ -14,4 +14,15 @@ class Pelatihan extends Model
         'harga',
         'cover'
     ];
+
+    // Definisikan relasi many-to-many dengan model User
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_pelatihan');
+    }
+
+    // public function users()
+    // {
+    //     return $this->hasMany(User::class);
+    // }
 }
