@@ -91,47 +91,47 @@
                                                 <p>KTP</p>
                                             </div>
                                             <div class="col-md-4 text-center">
-                                                <button class="btn btn-primary btn-sm">Upload</button>
+                                                <input type="file" name="ktp" class="form-control-file">
                                             </div>
                                         </div>
                                         <div class="row mb-2">
-                                            <div class="col">
+                                            <div class="col-md-8">
                                                 <p>CV</p>
                                             </div>
                                             <div class="col-md-4 text-center">
-                                                <button class="btn btn-primary btn-sm">Upload</button>
+                                                <input type="file" name="cv" class="form-control-file">
                                             </div>
                                         </div>
                                         <div class="row mb-2">
-                                            <div class="col">
+                                            <div class="col-md-8">
                                                 <p>Foto Background Merah</p>
                                             </div>
                                             <div class="col-md-4 text-center">
-                                                <button class="btn btn-primary btn-sm">Upload</button>
+                                                <input type="file" name="foto_background_merah" class="form-control-file">
                                             </div>
                                         </div>
                                         <div class="row mb-2">
-                                            <div class="col">
+                                            <div class="col-md-8">
                                                 <p>Surat Keterangan Bekerja (Jika Ada)</p>
                                             </div>
                                             <div class="col-md-4 text-center">
-                                                <button class="btn btn-primary btn-sm">Upload</button>
+                                                <input type="file" name="surat_keterangan_bekerja" class="form-control-file">
                                             </div>
                                         </div>
                                         <div class="row mb-2">
-                                            <div class="col">
+                                            <div class="col-md-8">
                                                 <p>Scan Ijazah Terakhir</p>
                                             </div>
                                             <div class="col-md-4 text-center">
-                                                <button class="btn btn-primary btn-sm">Upload</button>
+                                                <input type="file" name="scan_ijazah_terakhir" class="form-control-file">
                                             </div>
                                         </div>
                                         <div class="row mb-2">
-                                            <div class="col">
+                                            <div class="col-md-8">
                                                 <p>Foto Tanda Tangan</p>
                                             </div>
                                             <div class="col-md-4 text-center">
-                                                <button class="btn btn-primary btn-sm">Upload</button>
+                                                <input type="file" name="foto_tanda_tangan" class="form-control-file">
                                             </div>
                                         </div>
                                         <div class="row">
