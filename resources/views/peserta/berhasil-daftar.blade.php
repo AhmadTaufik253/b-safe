@@ -30,7 +30,11 @@
                 <p class="mb-1" style="font-weight: bold; font-size: 14px;">No Whatsapp</p>
                 <h4 class="mb-3" style="font-weight: bold; font-size: 16px;">{{ $user->no_telepon }}</h4>
                 <p class="mb-1" style="font-weight: bold; font-size: 14px;">Pelatihan</p>
-                {{-- <h4 class="mb-3" style="font-weight: bold; font-size: 16px;">{{ $user->pelatihan->nama_pelatihan }}</h4> --}}
+                @if($latestPelatihan)
+                  <h4 class="mb-3" style="font-weight: bold; font-size: 16px;">{{ $latestPelatihan->nama_pelatihan }}</h4>
+                @else
+                    <h4 class="mb-3" style="font-weight: bold; font-size: 16px;">Tidak ada pelatihan</h4>
+                @endif                
                 {{-- <h4 class="mb-3" style="font-weight: bold; font-size: 14px;">()</h4> --}}
             </div>
             </div>

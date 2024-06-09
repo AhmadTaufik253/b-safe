@@ -7,6 +7,7 @@ use App\Models\Member;
 use App\Models\User;
 use App\Models\UserPelatihan;
 use Illuminate\Http\Request;
+use DB;
 
 class MemberController extends Controller
 {
@@ -16,34 +17,13 @@ class MemberController extends Controller
     public function index()
     {
         //
-        // $data['member'] = User::where('role','peserta')->where('status_peserta','peserta')->get();
-        $data['member'] = UserPelatihan::where('status_peserta','peserta')->get();
-        // dd($data['member']);
+        // $data['member'] = UserPelatihan::where('status_peserta','peserta')->get();
+        $data['member'] = UserPelatihan::select('user_id', DB::raw('MAX(id) as id'), DB::raw('MAX(pelatihan_id) as pelatihan_id'))
+                                    ->where('status_peserta', 'peserta')
+                                    ->groupBy('user_id')
+                                    ->get();
+
         return view('admin.member', $data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Member $member)
-    {
-        //
     }
 
     /**
@@ -81,7 +61,7 @@ class MemberController extends Controller
         $data->tipe_pendaftaran = $request->tipe_pendaftaran;
         $data->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('success','Berhasil Update Data Peserta');;
     }
 
     public function riwayat($id){
@@ -109,6 +89,32 @@ class MemberController extends Controller
         $data = UserPelatihan::find($id);
         $data->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('success','Berhasil Menghapus Peserta');;
     }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Member $member)
+    {
+        //
+    }
+
+    
 }

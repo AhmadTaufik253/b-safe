@@ -80,9 +80,11 @@ class RegisterController extends Controller
             ]);
         }
          // Load the pelatihan relationship
-        $user->load('pelatihans');
+        // $user->load('pelatihans');
+        // Load the latest pelatihan relationship
+        $latestPelatihan = $user->pelatihans()->latest()->first();
 
-        return view('peserta.berhasil-daftar', compact('user'));
+        return view('peserta.berhasil-daftar', compact('user','latestPelatihan'));
     }
     /**
      * Display the specified resource.

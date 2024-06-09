@@ -13,8 +13,6 @@
                                 <div class="card-header">
 									<div class="d-flex align-items-center">
 										<h4 class="card-title">Calon Peserta Pelatihan {{ $nama_pelatihan }}</h4>
-										<button class="btn btn-primary ml-auto btn-sm" data-toggle="modal" data-target="#addRowModal"><i class="fas fa-plus"></i> Buat Pelatihan
-										</button>
 									</div>
                                 </div>
                                 <div class="card-body">

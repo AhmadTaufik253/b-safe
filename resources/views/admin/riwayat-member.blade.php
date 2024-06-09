@@ -27,10 +27,16 @@
                                     <tbody>
                                         @foreach($peserta as $pelatihan)
                                         <tr>
-                                                <td>{{ $pelatihan->user->nama }}</td>
-                                                <td>{{ $pelatihan->pelatihan->nama_pelatihan }}</td>
-                                                <td></td>
-                                            </tr>
+                                            <td>{{ $pelatihan->user->nama }}</td>
+                                            <td>{{ $pelatihan->pelatihan->nama_pelatihan }}</td>
+                                            <td>
+                                                @if($pelatihan->sertifikat != null)
+                                                    <a href="{{ asset($pelatihan->sertifikat) }}" target="_blank" class="btn btn-primary btn-sm">Detail</a>
+                                                @else
+                                                    Sertifikat Belum Dibuat
+                                                @endif
+                                            </td>
+                                        </tr>
                                         @endforeach
                                     </tbody>
                                 </table>

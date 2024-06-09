@@ -44,7 +44,7 @@ class DashboardController extends Controller
         $peserta->status_peserta = "peserta";
         $peserta->save();
     
-        return redirect()->back();
+        return redirect()->back()->with('success','Berhasil Accept Peserta');
 
     }
 

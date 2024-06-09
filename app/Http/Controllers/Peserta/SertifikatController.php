@@ -15,7 +15,7 @@ class SertifikatController extends Controller
     public function index()
     {
         //
-        $data['sertif'] = UserPelatihan::where('user_id', Auth::user()->id)->where('status_sertifikat','Sertifikat sudah dibuat')->get();
+        $data['sertif'] = UserPelatihan::where('user_id', Auth::user()->id)->get();
         
         return view('peserta.sertifikat', $data);
     }

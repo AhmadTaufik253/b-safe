@@ -29,6 +29,7 @@ class ProyekController extends Controller
         $peserta = UserPelatihan::find($id);
         $namaPeserta = $peserta->user->nama;
         $pelatihanPeserta = $peserta->pelatihan->nama_pelatihan;
+        $fotoPeserta = $peserta->user->foto_background_merah;
 
         // Path file PDF yang ada
         $originalPdfPath = storage_path('app/public/sertifikat/sertifikat-2.pdf');
@@ -55,7 +56,6 @@ class ProyekController extends Controller
         $pdf->SetXY($x, 110); 
         $pdf->Write(0, $text);
 
-        #9e8633
         // Menambahkan nama pelatihan dengan ukuran font yang lebih kecil dan di tengah
         $pdf->SetFont('Times', 'BI', 18); 
         $pdf->SetTextColor(158,134,51); 
@@ -64,6 +64,22 @@ class ProyekController extends Controller
         $x = ($pageWidth - $textWidth) / 2;
         $pdf->SetXY($x, 140); 
         $pdf->Write(0, $text);
+
+        // Menambahkan gambar ke PDF
+        // Path gambar
+        if($fotoPeserta != null){
+
+            $imagePath = storage_path('app/public/'.$fotoPeserta); // Ubah path sesuai dengan lokasi gambar Anda
+            
+            // Posisi dan ukuran gambar
+            $xImage = 113;  // Posisi X gambar
+            $yImage = 223;  // Posisi Y gambar
+            $widthImage = 22;  // Lebar gambar
+            $heightImage = 30;  // Tinggi gambar
+            
+            // Menambahkan gambar
+            $pdf->Image($imagePath, $xImage, $yImage, $widthImage, $heightImage);
+        }
 
         // Menyimpan file PDF yang sudah dimodifikasi
         $pdf->Output($newPdfPath, 'F');
@@ -88,7 +104,7 @@ class ProyekController extends Controller
         $data->status_bayar = 'Lunas';
         $data->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('success','Berhasil Upload Bukti Pembayaran');;
     }
 
     /**

@@ -446,5 +446,37 @@
         });
     });
 </script>
+
+@if(session('success'))
+	<script>
+		var SweetAlert2Demo = function(){
+			var initDemos = function(){
+				swal({
+					title:"Success",
+					text:"{{session('success')}}",
+					icon : "success",
+					buttons : {
+						confirm: {
+							text : "OK",
+							value : true,
+							visible : true,
+							className : "btn btn-success",
+							closeModal : true
+						}
+					}
+				});
+			};
+			return {
+				init: function(){
+					initDemos();
+				},
+			};
+		}();
+		jQuery(document).ready(function(){
+			SweetAlert2Demo.init();
+		});
+	</script>
+@endif
+
 </body>
 </html>

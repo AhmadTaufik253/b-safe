@@ -113,7 +113,7 @@ class PelatihanController extends Controller
             $data->save();
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success','Berhasil Menambahkan Pelatihan');
     }
 
     /**
@@ -151,7 +151,7 @@ class PelatihanController extends Controller
         }
         $pelatihan->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('success','Berhasil Update Data Pelatihan');
     }
 
     /**
@@ -163,7 +163,7 @@ class PelatihanController extends Controller
         $data = Pelatihan::find($id);
         $data->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('success','Berhasil Menghapus Pelatihan');
 
     }
 }
