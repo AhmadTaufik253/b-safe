@@ -100,7 +100,7 @@
 <body class="login">
 	<div class="wrapper wrapper-login">
 		<div class="container container-login animated fadeIn">
-			<h3 class="text-center">Sign In To Admin</h3>
+			<h3 class="text-center">Sign In</h3>
 			<div class="login-form">
 				<form action="/login" method="post">
 					@csrf
